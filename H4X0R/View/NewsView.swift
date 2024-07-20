@@ -13,9 +13,13 @@ struct NewsView: View {
     var body: some View {
         NavigationStack {
             List(networkManager.stories) { story in
-                HStack {
-                    Text(String(story.score))
-                    Text(story.title)
+                NavigationLink(destination: DetailView(url: story.url as? String)) {
+                    HStack {
+                        Image(systemName: "star.fill")
+                            .foregroundStyle(Color.yellow)
+                        Text(String(story.score))
+                        Text(story.title)
+                    }
                 }
             }
             .navigationTitle("H4X0R NEWS")
